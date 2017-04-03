@@ -1,0 +1,39 @@
+{% extends 'service/base.html' %}
+{% block title %}Your Packages{% endblock %}
+{% block Packages_active %}active{% endblock %}
+
+{% block body %}
+	<ul class="nav nav-pills" style="margin-bottom: 10px;">
+		<li role="presentation"><a href="{% url 'service:add_package' %}"><button class="btn btn-info">Create Package</button></a></li>
+	</ul>
+		<div class="panel panel-default">
+			<div class="panel-body" >
+				<table class="table">
+					<thead>
+						<tr>
+							<th> <center> Sr. Number </center></th>
+							<th> <center> Patient Name </center> </th>
+							<th> <center> Contact Number </center> </th>
+							<th> <center> Service Required </center> </th>
+							<th> <center> Duration </center> </th>
+							<th> <center> Period </center> </th>
+							<th> <center> Status </center> </th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for package in all_packages %}
+							<tr>
+								<td> <center> {{ forloop.counter }}. </center></td>
+								<td> <center> {{ package.patient_name }} </center> </td>
+								<td> <center> {{ package.phone_number }} </center> </td>
+								<td> <center> {{ package.service_required }} </center> </td>
+								<td> <center> {{ package.duration }} </center> </td>
+								<td> <center> {{ package.period }} </center> </td>
+								<td> <center> {{ package.status }} </center> </td>
+							</tr>	
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>			
+{% endblock %}

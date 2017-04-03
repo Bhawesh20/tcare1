@@ -1,0 +1,35 @@
+{% extends 'service/base.html' %}
+{% block title %}Prescription{% endblock %}
+{% block prescriptions_active %}active{% endblock %}
+
+{% block body %}
+	<ul class="nav nav-pills" style="margin-bottom: 10px;">
+		<li role="presentation"><a href="{% url 'service:add_prescription' %}"><button class="btn btn-info">New Prescription</button></a>  </li>
+	</ul>
+			{% if all_prescriptions %}
+				{% for prescriptions in all_prescriptions %}
+					<div class="panel panel-default pres-panel">
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-sm-1 prescription_size"><br><br>
+									<p>{{ forloop.counter }}.</p>
+								</div>
+								<div class="col-sm-3">
+									<a href="{{ prescriptions.prescription_image.url }}" data-rel="popup" data-position-to="window" class="ui-btn ui-corner-all ui-shadow ui-btn-inline">
+										<img src="{{ prescriptions.prescription_image.url }}" class="img-responsive fixed_width">
+									</a>
+								</div>
+								<div class="col-sm-6 prescription_size">
+									<div class="caption"><br>
+										<p> Patient: {{prescriptions.patient_name}}</p>
+										<p> Prescribed By: {{prescriptions.prescribed_by}}</p>
+										<p> Prescription Date: {{prescriptions.prescription_date}}</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+
+			{% endif %}
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'service/base.html' %}
+{% block title %}Appointment{% endblock %}
+{% block appointments_active %}active{% endblock %}
+
+{% block body %}
+	<ul class="nav nav-pills" style="margin-bottom: 10px;">
+		<li role="presentation"><a href="{% url 'service:add_appointment' %}"><button class="btn btn-info">New Appointment</button></a></li>
+	</ul>
+		<div class="panel panel-default">
+			<div class="panel-body" >
+				<table class="table">
+					<thead>
+						<tr>
+							<th> <center> Sr. Number </center></th>
+							<th> <center> Patient Name </center> </th>
+							<th> <center> Contact Number </center> </th>
+							<th> <center> Service Required </center> </th>
+							<th> <center> Served By </center> </th>
+							<th> <center> Appointment Date </center> </th>
+							<th> <center> Status </center> </th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for appointments in all_appointment %}
+							<tr>
+								<td> <center> {{ forloop.counter }}. </center></td>
+								<td> <center> {{ appointments.patient_name }} </center> </td>
+								<td> <center> {{ appointments.phone_number }} </center> </td>
+								<td> <center> {{ appointments.service_required }} </center> </td>
+								<td> <center> {{ appointments.served_by }} </center> </td>
+								<td> <center> {{ appointments.appointment_date }} </center> </td>
+								<td> <center> {{ appointments.status }} </center> </td>
+							</tr>
+							
+						{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>			
+{% endblock %}

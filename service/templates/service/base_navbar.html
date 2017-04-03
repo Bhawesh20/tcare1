@@ -1,0 +1,59 @@
+<!Doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>{% block title %}Tender Care{% endblock %}</title>
+		{% load staticfiles %}
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css?v=1" />
+		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Satisfy?v=1" />
+		<link rel="stylesheet" type="text/css" href="{% static 'service/style.css' %}?v=1" /> 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+	</head>
+	<body class="body">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container-fluid">
+				<!-- Header -->
+		        <div class="navbar-header">
+		            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
+		                <span class="icon-bar"></span>
+		                <span class="icon-bar"></span>
+		                <span class="icon-bar"></span>
+		            </button>
+		            <a class="navbar-brand" href="{% url 'service:index' %}">Tender Care</a>
+		        </div>
+		        <!-- Items -->
+		        <div class="collapse navbar-collapse" id="topNavBar">
+		        	<ul class="nav navbar-nav">
+		                
+		                <li class="{% block home_active %}{% endblock %}"><a href="{% url 'service:home' %}"><span aria-hidden="true"></span>&nbsp; Home</a></li>
+
+		                <li class="{% block appointments_active %}{% endblock %}"><a href="{% url 'service:appointment' %}"><span aria-hidden="true"></span>&nbsp; Appointments</a></li>
+		                
+		                <li class="{% block prescriptions_active %}{% endblock %}"><a href="{% url 'service:prescription' %}"><span aria-hidden="true"></span>&nbsp; Prescriptions</a></li>
+
+		                <li class="{% block test_active %}{% endblock %}"><a href="#"><span aria-hidden="true"></span>&nbsp; Lab Test</a></li>
+
+		                <li class="{% block Packages_active %}{% endblock %}"><a href="{% url 'service:package' %}"><span aria-hidden="true"></span>&nbsp; Packages</a></li>
+		            </ul>
+		            <!-- Logout button -->
+					<ul class="nav navbar-nav navbar-right">
+					    <li class="{% block user_active %}{% endblock %}">
+					        <a href="{% url 'service:user_detail' %}">
+					            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp; {{ user.get_username|title }} &nbsp;&nbsp;
+					        </a>
+					    </li>
+					    <li>
+					        <a href="{% url 'service:logout_user' %}">
+					            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp; Logout &nbsp;&nbsp;
+					        </a>
+					    </li>
+					</ul>
+		        </div>
+			</div>
+		</nav>
+		{% block basebody %}
+		{% endblock %}
+	</body>
+</html>

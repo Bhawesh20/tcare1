@@ -1,0 +1,39 @@
+{% extends 'service/base_navbar.html' %}
+{% block basebody %}
+<div class="container-fluid userd">
+	<div class="row">
+		<div class="col-sm-3 userinfod">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					{% if userdata %}
+						{% for userdt in userdata %}
+							<img src="{{ userdt.profile_photo.url}}" class="img-responsive userimg">
+							
+						{% endfor %}
+					{% else %}
+						<img src="../media/user.png" class="img-responsive userimg">
+					{% endif %}
+							<table class="table userbase">
+								<tr>
+									<th>User ID:</th>
+									<td>{{user.pk}}</td>
+								</tr>
+								<tr>
+									<th>Name:</th>
+									{% if user.get_full_name %}
+										<th>{{user.get_full_name|title}}</th>
+									{% else %}
+										<th>{{user.username|title}}</th>
+									{% endif %}
+								</tr>
+							</table>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-9">
+			{% block body %}
+			{% endblock %}
+		</div>
+	</div>
+</div>
+{% endblock %}

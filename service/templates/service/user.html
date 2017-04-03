@@ -1,0 +1,95 @@
+{% extends 'service/base_navbar.html' %}
+{% block title %}{{user.get_username|title}}'s Detail{% endblock %}
+{% block user_active %}active{% endblock %}
+{% block basebody %}
+<div class="container-fluid userd">
+	<div class="row">
+		{% if userdata %}
+			{% for userdt in userdata %}
+				<div class="col-sm-6 col-md-3">
+					<img src="{{ userdt.profile_photo.url}}" class="img-responsive userimg">
+				</div>
+				<div class="col-sm-6 col-md-9">
+					{% if user.get_full_name %}
+						<h3>{{userdt.user.get_full_name|title}}'s detail</h3>
+					{% else %}
+						<h3>{{userdt.user.username|title}}'s detail</h3>
+					{% endif %}
+						<br>
+					<table class="table table-hover" border="0">
+						<tr>
+							<th>User ID:</th>
+							<td>{{userdt.user.pk}}</td>
+						</tr>
+						<tr>
+							<th>Username:</th>
+							<td>{{userdt.user.username|title}}</td>
+						</tr>
+						<tr>
+							<th>Name:</th>
+							<td>{{userdt.user.get_full_name|title}}</td>
+						</tr>
+						<tr>
+							<th>Email:</th>
+							<td>{{userdt.user.email}}</td>
+						</tr>
+						<tr>
+							<th>Phone:</th>
+							<td>{{userdt.contact_number}}</td>
+						</tr>
+						<tr>
+							<th>Gender:</th>
+							<td>{{userdt.gender}}</td>
+						</tr>
+						<tr>
+							<th>Age:</th>
+							<td>{{userdt.age}}</td>
+						</tr>
+					</table>
+
+				</div>
+			{% endfor %}
+		{% else %}
+				<div class="col-sm-6 col-md-3">
+					<img src="../media/user.png" class="img-responsive userimg">
+				</div>
+				<div class="col-sm-6 col-md-9">
+					<h3>{{user.get_username|title}}'s detail</h3><br>
+					<table class="table table-hover" border="0">
+						<tr>
+							<th>User ID:</th>
+							<td>{{user.pk}}</td>
+						</tr>
+						<tr>
+							<th>Username:</th>
+							<td>{{user.username|title}}</td>
+						</tr>
+						<tr>
+							<th>Name:</th>
+							<td>{{user.get_full_name|title}}</td>
+						</tr>
+						<tr>
+							<th>Email:</th>
+							<td>{{user.email}}</td>
+						</tr>
+						<tr>
+							<th>Phone:</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th>Gender:</th>
+							<td></td>
+						</tr>
+						<tr>
+							<th>Age:</th>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+		{% endif %}
+		<ul class="nav nav-pills" style="margin-bottom: 10px;">
+			<li role="presentation"><a href="{% url 'service:edit_user' user.pk %}"><button class="btn btn-info">Edit Profile</button></a></li>
+		</ul>
+	</div>
+</div>
+{% endblock %}

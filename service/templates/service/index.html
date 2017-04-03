@@ -1,0 +1,9 @@
+{% extends 'service/base.html' %}
+{% block title %} TenderCare-Home {% endblock %}
+{% block home_active %}active{% endblock %}
+{% block body %}
+	<div class="container-fluid">
+		<a href="{% url 'service:appointment' %}"><span class="glyphicon glyphicon-calendar"> MyAppointment </span></a><br>
+		<a href="{% url 'service:add_appointment'%}"><span class="glyphicon glyphicon-calendar"> ScheduleAppointment </span></a>
+	</div>
+{% endblock %}
